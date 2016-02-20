@@ -1,0 +1,44 @@
+package com.theboss.jackli.tripbuddy.model;
+
+import com.theboss.jackli.tripbuddy.model.beans.User;
+import com.theboss.jackli.tripbuddy.util.DataTestingViewInterfaece;
+import com.theboss.jackli.tripbuddy.util.RemoteDatabaseSingleton;
+
+import rx.functions.Action1;
+
+/**
+ * Created by jianhuizhu on 2016-02-20.
+ */
+public class LoginModel {
+    private DataTestingViewInterfaece viewHandle;
+    public LoginModel(){
+
+    }
+    public void createDummyUsers(){
+        User user1=new User();
+        User user2=new User();
+
+        user1.setEmail("fishsb19@gmail.com");
+        user1.setPassword("12345678");
+        user1.setFirstname("Jianhui");
+        user1.setLastname("zhu");
+
+        user2.setEmail("jianhuizhu1987@gmail.com");
+        user2.setFirstname("yucun");
+        user2.setLastname("li");
+        user2.setPassword("12345678");
+
+        RemoteDatabaseSingleton.getInstance().registerUser(user1).subscribe(new Action1<User>() {
+            @Override
+            public void call(User user) {
+                viewHandle.showTag(user);
+            }
+        });
+        RemoteDatabaseSingleton.getInstance().registerUser(user2).subscribe(new Action1<User>() {
+            @Override
+            public void call(User user) {
+                viewHandle.showTag(user);
+            }
+        });
+    }
+}
