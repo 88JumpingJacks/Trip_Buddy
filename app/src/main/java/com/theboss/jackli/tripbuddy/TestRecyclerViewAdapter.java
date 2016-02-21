@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -50,7 +51,21 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             case TYPE_CELL: {
                 view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.list_item_card_small, parent, false);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageView checkBox=(ImageView)v.findViewById(R.id.checkbox_icon);
+                        if(checkBox.getTag().equals("unchecked")){
+                            checkBox.setImageResource(R.drawable.like);
+                            checkBox.setTag("checked");
+                        }else{
+                            checkBox.setImageResource(R.drawable.unlike);
+                            checkBox.setTag("unchecked");
+                        }
+                    }
+                });
                 return new RecyclerView.ViewHolder(view) {
+
                 };
             }
         }
@@ -67,4 +82,6 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 break;
         }
     }
+
+
 }
