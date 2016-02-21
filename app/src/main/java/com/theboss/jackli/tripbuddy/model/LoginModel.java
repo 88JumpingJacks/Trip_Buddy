@@ -4,6 +4,9 @@ import com.theboss.jackli.tripbuddy.model.beans.User;
 import com.theboss.jackli.tripbuddy.util.DataTestingViewInterfaece;
 import com.theboss.jackli.tripbuddy.util.RemoteDatabaseSingleton;
 
+import java.util.InputMismatchException;
+import java.util.List;
+
 import rx.functions.Action1;
 
 /**
@@ -56,5 +59,11 @@ public class LoginModel {
                 }
             }
         });
+    }
+    public void insertImage(String url,int id){
+        RemoteDatabaseSingleton.getInstance().insertImage(url, id);
+    }
+    public void addCityTrip(String uID,long time,String city,List<Integer>sightList){
+        RemoteDatabaseSingleton.getInstance().addCityTrip(uID,time,city,sightList);
     }
 }

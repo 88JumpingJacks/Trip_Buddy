@@ -16,6 +16,9 @@ import com.theboss.jackli.tripbuddy.model.LoginModel;
 import com.theboss.jackli.tripbuddy.model.beans.User;
 import com.theboss.jackli.tripbuddy.util.DataTestingViewInterfaece;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements DataTestingViewIn
     EditText password;
     @OnClick(R.id.button)
     public void click(View view){
-        loginModel.login(username.getText().toString(),password.getText().toString());
+        loginModel.insertImage(username.getText().toString(), Integer.parseInt(password.getText().toString()));
     }
     LoginModel loginModel;
 
@@ -45,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements DataTestingViewIn
         setContentView(R.layout.login);
         ButterKnife.bind(this);
         this.loginModel=new LoginModel(this);
+        List<Integer> sightList=new ArrayList<>();
+        sightList.add(1);
+        loginModel.addCityTrip("Jianhui",System.currentTimeMillis(),"montreal",sightList);
 
     }
 

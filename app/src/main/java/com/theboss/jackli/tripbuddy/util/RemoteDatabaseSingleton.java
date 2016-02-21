@@ -4,7 +4,11 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.theboss.jackli.tripbuddy.model.beans.CityTrip;
+import com.theboss.jackli.tripbuddy.model.beans.Sight;
 import com.theboss.jackli.tripbuddy.model.beans.User;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -86,8 +90,20 @@ public class RemoteDatabaseSingleton {
     }
     public void insertImage(String url,int id){
         Firebase ref=new Firebase(Constant.urlImage);
-        
+        ref.child(String.valueOf(id)).setValue(url);
     }
-
+    public void addCityTrip(String userID,long time,String city,List<Integer> sightID){
+        Firebase ref=new Firebase(Constant.urlUser).child(userID).child("CityTrips").push();
+        CityTrip cityTrip=new CityTrip();
+        cityTrip.setCityName(city);
+        cityTrip.setTime(time);
+        ref.setValue(cityTrip);
+        Firebase sightRef=ref.child("Sights");
+        for(Integer id:sightID){
+            Sight sight=new Sight();
+            sight.setId(id);
+            sightRef.push().setValue(sight);
+        }
+    }
 
 }
