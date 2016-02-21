@@ -17,13 +17,15 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     List<Object> contents;
     Context context;
+    int type;
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
 
-    public TestRecyclerViewAdapter(List<Object> contents, Context context) {
+    public TestRecyclerViewAdapter(List<Object> contents, Context context, int type) {
         this.contents = contents;
         this.context = context;
+        this.type = type;
     }
 
     @Override
