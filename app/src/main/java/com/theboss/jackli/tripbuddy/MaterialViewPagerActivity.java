@@ -55,13 +55,13 @@ public class MaterialViewPagerActivity extends AppCompatActivity {
             public CharSequence getPageTitle(int position) {
                 switch (position % 4) {
                     case 0:
-                        return "Selection";
+                        return "Resturant";
                     case 1:
-                        return "Actualités";
+                        return "Sightseeing";
                     case 2:
-                        return "Professionnel";
+                        return "Natural";
                     case 3:
-                        return "Divertissement";
+                        return "Museum";
                 }
                 return "";
             }
