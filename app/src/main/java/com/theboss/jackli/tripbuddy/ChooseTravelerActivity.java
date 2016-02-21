@@ -14,6 +14,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.theboss.jackli.tripbuddy.model.pojo.FakeUser;
 import com.theboss.jackli.tripbuddy.utils.RoundedAvatarDrawable;
 
 /**
@@ -44,6 +45,13 @@ public class ChooseTravelerActivity extends AppCompatActivity {
         TextView titleTextView = (TextView) findViewById(R.id.text_title);
         ViewCompat.animate(titleTextView).alpha(1).start();
 
+        TextView name=(TextView)findViewById(R.id.person_name);
+        TextView like=(TextView)findViewById(R.id.person_like);
+        TextView thought=(TextView)findViewById(R.id.person_thought);
+        FakeUser fakeUser=TextRandomizor.getInstance().randomPicker();
+        name.setText(fakeUser.getName());
+        like.setText(fakeUser.getLike());
+        thought.setText(fakeUser.getThought());
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.getViewTreeObserver().addOnPreDrawListener(
                 new ViewTreeObserver.OnPreDrawListener() {
