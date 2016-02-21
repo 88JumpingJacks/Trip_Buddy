@@ -3,6 +3,7 @@ package com.theboss.jackli.tripbuddy.splashes;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
@@ -19,6 +20,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.theboss.jackli.tripbuddy.ChooseTravelerActivity;
 import com.theboss.jackli.tripbuddy.R;
 import com.theboss.jackli.tripbuddy.splashes.itemanimator.ItemAnimatorFactory;
 
@@ -150,6 +152,14 @@ public class OnboardingWithPlaceholderActivity extends AppCompatActivity {
                 mImageView.setImageBitmap(BitmapFactory.decodeResource(
                     getResources(), mItems.get(position).getImgId()));
                 mTitleTextView.setText(mItems.get(position).getAuthor());
+
+                mImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(OnboardingWithPlaceholderActivity.this, ChooseTravelerActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         }
 

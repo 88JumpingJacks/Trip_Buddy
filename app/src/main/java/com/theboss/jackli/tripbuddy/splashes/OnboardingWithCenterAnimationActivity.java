@@ -12,7 +12,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.theboss.jackli.tripbuddy.ChoosePreferenceActivity;
 import com.theboss.jackli.tripbuddy.MaterialViewPagerActivity;
 import com.theboss.jackli.tripbuddy.R;
 import com.theboss.jackli.tripbuddy.model.City;
