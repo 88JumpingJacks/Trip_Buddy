@@ -25,7 +25,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:alpha="0"
-            android:text="Hello world"
+            android:text="Trip Buddy"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
             android:textColor="@android:color/white"
             android:textSize="22sp"
@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:alpha="0"
             android:gravity="center"
-            android:text="This a nice text"
+            android:text="come to explore"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
             android:textSize="20sp"
             tools:alpha="1"
@@ -52,7 +52,7 @@
             android:layout_marginTop="48dp"
             android:scaleX="0"
             android:scaleY="0"
-            android:text="A nice choice"
+            android:text="I am new"
             android:theme="@style/Button"
             />
 
