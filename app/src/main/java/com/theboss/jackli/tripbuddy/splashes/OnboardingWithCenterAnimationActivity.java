@@ -73,49 +73,8 @@ public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.landmarks);
+                    List<TripAdvisorLocation> locations = TripAdvisorService.getListForSubcategory(City.MTL, TripAdvisorService.landmarks);
                     MaterialViewPagerActivity.landmarks.addAll(locations);
-
-                    Thread sighttour = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.sightseeing_tours);
-                                MaterialViewPagerActivity.sighttours.addAll(locations);
-
-                                Thread nightlife = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.nightlife);
-                                            MaterialViewPagerActivity.nightlifes.addAll(locations);
-
-                                            Thread fooddrink = new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.food_drink);
-                                                        MaterialViewPagerActivity.fooddrinks.addAll(locations);
-                                                    } catch (IOException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            });
-                                            fooddrink.start();
-
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-                                nightlife.start();
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    sighttour.start();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -124,6 +83,46 @@ public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
         });
         landmark.start();
 
+        Thread sighttour = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<TripAdvisorLocation> locations = TripAdvisorService.getListForSubcategory(City.MTL, TripAdvisorService.sightseeing_tours);
+                    MaterialViewPagerActivity.sighttours.addAll(locations);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        sighttour.start();
+
+        Thread nightlife = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<TripAdvisorLocation> locations = TripAdvisorService.getListForSubcategory(City.MTL, TripAdvisorService.nightlife);
+                    MaterialViewPagerActivity.nightlifes.addAll(locations);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        nightlife.start();
+
+        Thread fooddrink = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<TripAdvisorLocation> locations = TripAdvisorService.getListForSubcategory(City.MTL, TripAdvisorService.food_drink);
+                    MaterialViewPagerActivity.fooddrinks.addAll(locations);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        fooddrink.start();
 
     }
 

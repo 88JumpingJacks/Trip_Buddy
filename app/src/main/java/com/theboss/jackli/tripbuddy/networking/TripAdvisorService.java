@@ -32,8 +32,8 @@ public class TripAdvisorService {
         @GET("location/{location_id}/attractions?key="+TOKEN)
         Call<TripAdvisorResponse> responses(@Path("location_id") String location_id);
 
-        @GET("location/{location_id}/attractions?key=\"+TOKEN")
-        Call<TripAdvisorResponse> getListForSubcategory(@Path("location_id") String location_id, @Query("subcategory") String subcategory);
+        @GET("location/{location_id}/attractions?")
+        Call<TripAdvisorResponse> getListForSubcategory(@Path("location_id") String location_id, @Query("subcategory") String subcategory, @Query("key") String token);
     }
 
     public static List<TripAdvisorLocation> getCityTopList(int city) throws IOException {
@@ -57,7 +57,7 @@ public class TripAdvisorService {
         return result;
     }
 
-    public List<TripAdvisorLocation> getListForSubcategory(int city, String category) throws IOException {
+    public static List<TripAdvisorLocation> getListForSubcategory(int city, String category) throws IOException {
         List<TripAdvisorLocation> result = new ArrayList<TripAdvisorLocation>(20);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -66,7 +66,7 @@ public class TripAdvisorService {
                 .build();
 
         TripAdvisor tripAdvisor = retrofit.create(TripAdvisor.class);
-        Call<TripAdvisorResponse> response = tripAdvisor.getListForSubcategory(city+"", category);
+        Call<TripAdvisorResponse> response = tripAdvisor.getListForSubcategory(city+"", category, TOKEN);
 
         TripAdvisorResponse tripAdvisorResponse = response.execute().body();
 
