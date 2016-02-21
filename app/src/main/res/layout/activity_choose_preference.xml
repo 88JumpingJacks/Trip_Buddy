@@ -59,6 +59,7 @@
 
 
                 <TextView
+                    android:id="@+id/person_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jack Ma"
@@ -66,6 +67,7 @@
                     android:textSize="17dp" />
 
                 <TextView
+                    android:id="@+id/person_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="I like to travel with excited person "
@@ -74,6 +76,7 @@
                     android:textColor="#FF707070"/>
 
                 <TextView
+                    android:id="@+id/person_thought"
                     android:text="Let's join my trip in Montreal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
