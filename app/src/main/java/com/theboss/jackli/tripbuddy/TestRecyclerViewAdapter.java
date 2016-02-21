@@ -1,6 +1,7 @@
 package com.theboss.jackli.tripbuddy;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,7 +72,41 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 });
 
                 ImageView iv = (ImageView) view.findViewById(R.id.img_background);
-                iv.setImageDrawable(context.getDrawable(R.drawable.rich_nightclub_toronto));
+
+                TypedArray images;
+                int choice;
+                switch (type) {
+                    case 0:
+                        images = context.getResources().obtainTypedArray(R.array.landmarks);
+                        choice = (int) (Math.random() * images.length());
+                        iv.setImageResource(images.getResourceId(choice, R.drawable.landmark1));
+                        images.recycle();
+                        break;
+                    case 1:
+                        images = context.getResources().obtainTypedArray(R.array.sight_tour);
+                        choice = (int) (Math.random() * images.length());
+                        iv.setImageResource(images.getResourceId(choice, R.drawable.sight_tour1));
+                        images.recycle();
+                        break;
+                    case 2:
+                        images = context.getResources().obtainTypedArray(R.array.night_life);
+                        choice = (int) (Math.random() * images.length());
+                        iv.setImageResource(images.getResourceId(choice, R.drawable.night_life1));
+                        images.recycle();
+                        break;
+                    case 3:
+                        images = context.getResources().obtainTypedArray(R.array.food_drink);
+                        choice = (int) (Math.random() * images.length());
+                        iv.setImageResource(images.getResourceId(choice, R.drawable.food_drink1));
+                        images.recycle();
+                        break;
+                    default:
+                        images = context.getResources().obtainTypedArray(R.array.landmarks);
+                        choice = (int) (Math.random() * images.length());
+                        iv.setImageResource(images.getResourceId(choice, R.drawable.landmark1));
+                        images.recycle();
+                        break;
+                }
 
                 return new RecyclerView.ViewHolder(view) {
 

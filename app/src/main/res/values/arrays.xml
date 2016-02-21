@@ -2,26 +2,29 @@
 <resources>
 
     <array name="landmarks">
-        <!--<item>@drawable/location2</item>-->
-        <!--<item>@drawable/location4</item>-->
-        <!--<item>@drawable/location8</item>-->
-        <!--<item>@drawable/location10</item>-->
+        <item>@drawable/landmark1</item>
+        <item>@drawable/landmark2</item>
+        <item>@drawable/landmark3</item>
+        <item>@drawable/landmark4</item>
     </array>
 
     <array name="sight_tour">
-        <!--<item>@drawable/location1</item>-->
-        <!--<item>@drawable/location3</item>-->
-        <!--<item>@drawable/location7</item>-->
-        <!--<item>@drawable/location11</item>-->
-        <!--<item>@drawable/location12</item>-->
+        <item>@drawable/sight_tour1</item>
+        <item>@drawable/sight_tour2</item>
+        <item>@drawable/sight_tour3</item>
+        <item>@drawable/sight_tour4</item>
+        <item>@drawable/sight_tour5</item>
     </array>
 
     <array name="night_life">
-        <!--<item>@drawable/location5</item>-->
+        <item>@drawable/night_life1</item>
+        <item>@drawable/night_life2</item>
     </array>
 
     <array name="food_drink">
-        <!--<item>@drawable/location9</item>-->
+        <item>@drawable/food_drink1</item>
+        <item>@drawable/food_drink2</item>
+        <item>@drawable/food_drink3</item>
     </array>
 
 </resources>
