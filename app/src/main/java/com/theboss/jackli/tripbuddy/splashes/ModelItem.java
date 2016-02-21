@@ -27,11 +27,11 @@ public class ModelItem {
 
     public static List<ModelItem> getFakeItems() {
         ArrayList<ModelItem> itemsList = new ArrayList<>();
-        itemsList.add(new ModelItem("Donal Trump", R.drawable.donald));
-        itemsList.add(new ModelItem("Besim  Mazhiqi", R.drawable.img_besim));
-        itemsList.add(new ModelItem("Mark Bridger", R.drawable.img_mark));
-        itemsList.add(new ModelItem("William Mevissem", R.drawable.img_william));
-        itemsList.add(new ModelItem("Darren J Bennet", R.drawable.img_darren));
+        itemsList.add(new ModelItem("Donald Trump", R.drawable.donald));
+        itemsList.add(new ModelItem("Homer Simpson", R.drawable.homer_excited));
+        itemsList.add(new ModelItem("Mystery Man", R.drawable.question_mark_man));
+        itemsList.add(new ModelItem("Justin Bieber", R.drawable.justin_bieber));
+        itemsList.add(new ModelItem("Ralph", R.drawable.ralph));
         return itemsList;
     }
 }
