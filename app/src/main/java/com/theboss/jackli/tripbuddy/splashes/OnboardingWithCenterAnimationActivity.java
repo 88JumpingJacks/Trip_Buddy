@@ -1,5 +1,6 @@
 package com.theboss.jackli.tripbuddy.splashes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -12,6 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.theboss.jackli.tripbuddy.R;
+import com.theboss.jackli.tripbuddy.model.City;
+import com.theboss.jackli.tripbuddy.model.TripAdvisorLocation;
+import com.theboss.jackli.tripbuddy.networking.TripAdvisorService;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
@@ -51,5 +58,27 @@ public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
 
             viewAnimator.setInterpolator(new DecelerateInterpolator()).start();
         }
+
+        Button btn_login = (Button) findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OnboardingWithCenterAnimationActivity.this, OnboardingWithPlaceholderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<TripAdvisorLocation> locations = TripAdvisorService.getCityTopList(City.MTL);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 }
