@@ -8,6 +8,7 @@ import com.theboss.jackli.tripbuddy.model.beans.CityTrip;
 import com.theboss.jackli.tripbuddy.model.beans.Sight;
 import com.theboss.jackli.tripbuddy.model.beans.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -105,5 +106,48 @@ public class RemoteDatabaseSingleton {
             sightRef.push().setValue(sight);
         }
     }
+    public List<User> hasSameInterest(String userID){
+        List<User> result=new ArrayList<>();
+        Firebase ref=new Firebase(Constant.urlUser);
+        final CityTrip cur=getNewestCityTrip(userID);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot user:dataSnapshot.getChildren()){
+                    for(DataSnapshot repo:user.child("CityTrips").getChildren()){
+                        CityTrip temp=repo.getValue(CityTrip.class);
+                        if(cur.getCityName().equals(temp.getCityName())
+                                &&Math.abs(cur.getTime() % (24 * 60 * 60 * 1000) - temp.getTime()%(24*60*60*1000))<=1){
+                            /* to be add map compare logic*/
+                        }
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        return result;
+    }
+    public CityTrip getNewestCityTrip(String userID){
+        final CityTrip cityTrip=new CityTrip();
+        Firebase ref=new Firebase(Constant.urlUser).child(userID).child("CityTrips");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                CityTrip temp=dataSnapshot.getChildren().iterator().next().getValue(CityTrip.class);
+                cityTrip.setCityName(temp.getCityName());
+                cityTrip.setTime(temp.getTime());
+                cityTrip.setInterestedSigth(temp.getInterestedSigth());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        return cityTrip;
+    }
 }
