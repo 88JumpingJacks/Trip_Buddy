@@ -6,10 +6,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.theboss.jackli.tripbuddy.model.beans.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observer;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -36,7 +32,7 @@ public class RemoteDatabaseSingleton {
         return Observable.create(new Observable.OnSubscribe<User>() {
             @Override
             public void call(final Subscriber<? super User> subscriber) {
-                Firebase ref = new Firebase(Constant.urlRoot);
+                Firebase ref = new Firebase(Constant.urlUser);
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -57,18 +53,41 @@ public class RemoteDatabaseSingleton {
                     }
                 });
             }
-        }).observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread());
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
     }
     public Observable<User> registerUser(final User user){
         return Observable.create(new Observable.OnSubscribe<User>() {
             @Override
-            public void call(Subscriber<? super User> subscriber) {
-                Firebase ref=new Firebase(Constant.urlRoot).child(user.getEmail());
-                ref.setValue(user);
-                subscriber.onNext(user);
-                subscriber.onCompleted();
+            public void call(final Subscriber<? super User> subscriber) {
+
+                Firebase ref=new Firebase(Constant.urlUser);
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(user.getFirstname())) {
+                            subscriber.onNext(null);
+                            subscriber.onCompleted();
+                        } else {
+                            Firebase cur = new Firebase(Constant.urlUser).child(user.getFirstname());
+                            cur.setValue(user);
+                            subscriber.onNext(user);
+                            subscriber.onCompleted();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
             }
-        }).observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread());
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
     }
+    public void insertImage(String url,int id){
+        Firebase ref=new Firebase(Constant.urlImage);
+        
+    }
+
 
 }

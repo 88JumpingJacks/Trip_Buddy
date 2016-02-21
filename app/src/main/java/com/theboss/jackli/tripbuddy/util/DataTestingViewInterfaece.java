@@ -6,5 +6,5 @@ import com.theboss.jackli.tripbuddy.model.beans.User;
  * Created by jianhuizhu on 2016-02-20.
  */
 public interface DataTestingViewInterfaece {
-    void showTag(User user);
+    void showTag(String text);
 }

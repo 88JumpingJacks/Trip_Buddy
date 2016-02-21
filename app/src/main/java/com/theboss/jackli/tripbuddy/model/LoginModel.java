@@ -11,10 +11,11 @@ import rx.functions.Action1;
  */
 public class LoginModel {
     private DataTestingViewInterfaece viewHandle;
-    public LoginModel(){
-
+    public LoginModel(final DataTestingViewInterfaece viewHandle){
+        this.viewHandle=viewHandle;
     }
     public void createDummyUsers(){
+
         User user1=new User();
         User user2=new User();
 
@@ -31,13 +32,28 @@ public class LoginModel {
         RemoteDatabaseSingleton.getInstance().registerUser(user1).subscribe(new Action1<User>() {
             @Override
             public void call(User user) {
-                viewHandle.showTag(user);
+              //viewHandle.showTag(user.getEmail());
             }
         });
         RemoteDatabaseSingleton.getInstance().registerUser(user2).subscribe(new Action1<User>() {
             @Override
             public void call(User user) {
-                viewHandle.showTag(user);
+                //viewHandle.showTag(user);
+            }
+        });
+    }
+    public void login(String username,String password){
+        User tobeAuth=new User();
+        tobeAuth.setEmail(username);
+        tobeAuth.setPassword(password);
+        RemoteDatabaseSingleton.getInstance().loginUser(tobeAuth).subscribe(new Action1<User>() {
+            @Override
+            public void call(User user) {
+                if(user==null){
+                    viewHandle.showTag("user not exist");
+                }else{
+                    viewHandle.showTag("user loggedIn");
+                }
             }
         });
     }

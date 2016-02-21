@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/NOTICE' // will not include NOTICE file
+        exclude 'META-INF/LICENSE' // will not include LICENSE file
+    }
 }
 
 dependencies {
@@ -27,4 +31,5 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.2.3'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
