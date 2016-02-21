@@ -52,7 +52,7 @@
             android:layout_marginTop="48dp"
             android:scaleX="0"
             android:scaleY="0"
-            android:text="I am new"
+            android:text="login"
             android:theme="@style/Button"
             />
 
@@ -63,7 +63,7 @@
             android:layout_marginTop="4dp"
             android:scaleX="0"
             android:scaleY="0"
-            android:text="I am new!"
+            android:text="register"
             android:theme="@style/Button"
             />
 
