@@ -27,7 +27,7 @@ public class ModelItem {
 
     public static List<ModelItem> getFakeItems() {
         ArrayList<ModelItem> itemsList = new ArrayList<>();
-        itemsList.add(new ModelItem("Prasad A.", R.drawable.img_prasad));
+        itemsList.add(new ModelItem("Donal Trump", R.drawable.donald));
         itemsList.add(new ModelItem("Besim  Mazhiqi", R.drawable.img_besim));
         itemsList.add(new ModelItem("Mark Bridger", R.drawable.img_mark));
         itemsList.add(new ModelItem("William Mevissem", R.drawable.img_william));

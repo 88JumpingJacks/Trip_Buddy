@@ -78,7 +78,7 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
         return null;
     }
-    
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
