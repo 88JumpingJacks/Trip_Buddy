@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <array name="landmarks">
+        <!--<item>@drawable/food_drink_1</item>-->
+        <!--<item>@drawable/food_drink_2</item>-->
+        <!--<item>@drawable/food_drink_3</item>-->
+        <!--<item>@drawable/food_drink_5</item>-->
+    </array>
+
+    <array name="sight_tour">
+        <!--<item>@drawable/food_drink_1</item>-->
+        <!--<item>@drawable/food_drink_2</item>-->
+        <!--<item>@drawable/food_drink_3</item>-->
+        <!--<item>@drawable/food_drink_5</item>-->
+    </array>
+
+    <array name="night_life">
+        <!--<item>@drawable/food_drink_1</item>-->
+        <!--<item>@drawable/food_drink_2</item>-->
+        <!--<item>@drawable/food_drink_3</item>-->
+        <!--<item>@drawable/food_drink_5</item>-->
+    </array>
+
     <array name="food_drink">
-        <item>@drawable/food_drink_1</item>
-        <item>@drawable/food_drink_2</item>
-        <item>@drawable/food_drink_3</item>
-        <item>@drawable/food_drink_5</item>
+        <!--<item>@drawable/food_drink_1</item>-->
+        <!--<item>@drawable/food_drink_2</item>-->
+        <!--<item>@drawable/food_drink_3</item>-->
+        <!--<item>@drawable/food_drink_5</item>-->
     </array>
 
 </resources>
