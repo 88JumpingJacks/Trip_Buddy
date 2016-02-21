@@ -1,6 +1,11 @@
 package com.theboss.jackli.tripbuddy.networking;
 
+import com.theboss.jackli.tripbuddy.model.TripAdvisorLocation;
+import com.theboss.jackli.tripbuddy.model.pojo.Datum;
+import com.theboss.jackli.tripbuddy.model.pojo.TripAdvisorResponse;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,48 +18,31 @@ import retrofit2.http.Path;
  * Created by yucunli on 2016-02-20.
  */
 public class TripAdvisorService {
-    public static final String API_URL = "https://api.github.com";
+    public static final String API_URL = "http://api.tripadvisor.com/api/partner/2.0/";
+    public static final String TOKEN = "0E3224EDD1664C52893AC703E5288EAF";
 
-    public static class Contributor {
-        public final String login;
-        public final int contributions;
-
-        public Contributor(String login, int contributions) {
-            this.login = login;
-            this.contributions = contributions;
-        }
+    public interface TripAdvisor {
+        @GET("location/{location_id}/attractions?key="+TOKEN)
+        Call<TripAdvisorResponse> responses(@Path("location_id") String location_id);
     }
 
-    public interface GitHub {
-        @GET("/repos/{owner}/{repo}/contributors")
-        Call<List<Contributor>> contributors(
-                @Path("owner") String owner,
-                @Path("repo") String repo);
-    }
+    public static List<TripAdvisorLocation> getCityTopList(int city) throws IOException {
+        List<TripAdvisorLocation> result = new ArrayList<TripAdvisorLocation>(10);
 
-    public static String getContent() throws IOException {
-
-        String result = "";
-
-        // Create a very simple REST adapter which points the GitHub API.
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // Create an instance of our GitHub API interface.
-        GitHub github = retrofit.create(GitHub.class);
+        TripAdvisor tripAdvisor = retrofit.create(TripAdvisor.class);
 
-        // Create a call instance for looking up Retrofit contributors.
-        Call<List<Contributor>> call = github.contributors("square", "retrofit");
+        Call<TripAdvisorResponse> response = tripAdvisor.responses("155019");
+        TripAdvisorResponse tripAdvisorResponse = response.execute().body();
 
-        // Fetch and print a list of the contributors to the library.
-        result += call.execute().message();
-        //List<Contributor> contributors = call.execute().body();
-//        for (Contributor contributor : contributors) {
-//            result += contributor.login + " (" + contributor.contributions + ")";
-//            //System.out.println(contributor.login + " (" + contributor.contributions + ")");
-//        }
+        for(Datum datum : tripAdvisorResponse.getData()) {
+            TripAdvisorLocation tal = new TripAdvisorLocation(datum.getLocation_id(), datum.getName());
+            result.add(tal);
+        }
 
         return result;
     }

@@ -5,6 +5,7 @@ package com.theboss.jackli.tripbuddy.model;
  */
 public class TripAdvisorLocation {
 
+    private String url;
     private String locationId;
     private String name;
 
@@ -27,5 +28,13 @@ public class TripAdvisorLocation {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
