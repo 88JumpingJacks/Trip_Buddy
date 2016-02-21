@@ -69,17 +69,63 @@ public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
             }
         });
 
-        Thread thread = new Thread(new Runnable() {
+        Thread landmark = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    List<TripAdvisorLocation> locations = TripAdvisorService.getCityTopList(City.MTL);
+                    List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.landmarks);
+                    MaterialViewPagerActivity.landmarks.addAll(locations);
+
+                    Thread sighttour = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.sightseeing_tours);
+                                MaterialViewPagerActivity.sighttours.addAll(locations);
+
+                                Thread nightlife = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.nightlife);
+                                            MaterialViewPagerActivity.nightlifes.addAll(locations);
+
+                                            Thread fooddrink = new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    try {
+                                                        List<TripAdvisorLocation> locations = new TripAdvisorService().getListForSubcategory(City.MTL, TripAdvisorService.food_drink);
+                                                        MaterialViewPagerActivity.fooddrinks.addAll(locations);
+                                                    } catch (IOException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            });
+                                            fooddrink.start();
+
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                nightlife.start();
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    sighttour.start();
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-        thread.start();
+        landmark.start();
+
+
     }
+
+
 }

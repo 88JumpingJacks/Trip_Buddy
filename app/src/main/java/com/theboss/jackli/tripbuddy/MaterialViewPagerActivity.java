@@ -16,11 +16,21 @@ import android.view.View;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.theboss.jackli.tripbuddy.fragment.RecyclerViewFragment;
+import com.theboss.jackli.tripbuddy.model.TripAdvisorLocation;
+import com.theboss.jackli.tripbuddy.model.pojo.TripAdvisorResponse;
 import com.theboss.jackli.tripbuddy.splashes.OnboardingWithPlaceholderActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MaterialViewPagerActivity extends AppCompatActivity {
 
     private MaterialViewPager mViewPager;
+
+    public static final List<TripAdvisorLocation> landmarks = new ArrayList<>();
+    public static final List<TripAdvisorLocation> sighttours = new ArrayList<>();
+    public static final List<TripAdvisorLocation> nightlifes = new ArrayList<>();
+    public static final List<TripAdvisorLocation> fooddrinks = new ArrayList<>();
 
 
     @Override
@@ -34,15 +44,23 @@ public class MaterialViewPagerActivity extends AppCompatActivity {
 
             @Override
             public Fragment getItem(int position) {
+                RecyclerViewFragment recyclerViewFragment;
+
                 switch (position % 4) {
-                    //case 0:
-                    //    return RecyclerViewFragment.newInstance();
-                    //case 1:
-                    //    return RecyclerViewFragment.newInstance();
-                    //case 2:
-                    //    return WebViewFragment.newInstance();
+                    case 0:
+                        recyclerViewFragment =  RecyclerViewFragment.newInstance(landmarks.size(), 0);
+                        return recyclerViewFragment;
+                    case 1:
+                        recyclerViewFragment =  RecyclerViewFragment.newInstance(sighttours.size(), 1);
+                        return recyclerViewFragment;
+                    case 2:
+                        recyclerViewFragment =  RecyclerViewFragment.newInstance(nightlifes.size(), 2);
+                        return recyclerViewFragment;
+                    case 3:
+                        recyclerViewFragment =  RecyclerViewFragment.newInstance(fooddrinks.size(), 3);
+                        return recyclerViewFragment;
                     default:
-                        return RecyclerViewFragment.newInstance();
+                        return null;
                 }
             }
 
@@ -55,13 +73,13 @@ public class MaterialViewPagerActivity extends AppCompatActivity {
             public CharSequence getPageTitle(int position) {
                 switch (position % 4) {
                     case 0:
-                        return "Resturant";
+                        return "Landmarks";
                     case 1:
                         return "Sightseeing";
                     case 2:
-                        return "Natural";
+                        return "Night Life";
                     case 3:
-                        return "Museum";
+                        return "Food & Drink";
                 }
                 return "";
             }

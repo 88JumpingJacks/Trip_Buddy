@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
@@ -28,12 +27,18 @@ public class RecyclerViewFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
 
-    private static final int ITEM_COUNT = 10;
+    private int itemCount = 20;
+    private int category = 0;
 
     private List<Object> mContentItems = new ArrayList<>();
 
-    public static RecyclerViewFragment newInstance() {
-        return new RecyclerViewFragment();
+    public static RecyclerViewFragment newInstance(int item_count, int category) {
+        return new RecyclerViewFragment(item_count, category);
+    }
+
+    public RecyclerViewFragment(int item_count, int category) {
+        this.itemCount = item_count;
+        this.category = category;
     }
 
     @Override
@@ -53,7 +58,7 @@ public class RecyclerViewFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         {
-            for (int i = 0; i < ITEM_COUNT; ++i)
+            for (int i = 0; i < itemCount; ++i)
                 mContentItems.add(new Object());
             mAdapter.notifyDataSetChanged();
         }
