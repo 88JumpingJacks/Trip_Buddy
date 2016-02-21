@@ -12,6 +12,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.theboss.jackli.tripbuddy.ChoosePreferenceActivity;
+import com.theboss.jackli.tripbuddy.MaterialViewPagerActivity;
 import com.theboss.jackli.tripbuddy.R;
 import com.theboss.jackli.tripbuddy.model.City;
 import com.theboss.jackli.tripbuddy.model.TripAdvisorLocation;
@@ -63,7 +65,7 @@ public class OnboardingWithCenterAnimationActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnboardingWithCenterAnimationActivity.this, OnboardingWithPlaceholderActivity.class);
+                Intent intent = new Intent(OnboardingWithCenterAnimationActivity.this, MaterialViewPagerActivity.class);
                 startActivity(intent);
             }
         });
