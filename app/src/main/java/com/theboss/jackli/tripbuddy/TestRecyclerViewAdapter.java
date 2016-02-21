@@ -45,6 +45,7 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             case TYPE_HEADER: {
                 view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.list_item_card_small, parent, false);
+                /* un add on click listener*/
                 return new RecyclerView.ViewHolder(view) {
                 };
             }
