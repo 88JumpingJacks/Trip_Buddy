@@ -1,5 +1,7 @@
 package com.theboss.jackli.tripbuddy;
 
+import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +16,19 @@ import java.util.List;
 public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<Object> contents;
+    Context context;
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
 
-    public TestRecyclerViewAdapter(List<Object> contents) {
+    public TestRecyclerViewAdapter(List<Object> contents, Context context) {
         this.contents = contents;
+        this.context = context;
     }
 
     @Override
     public int getItemViewType(int position) {
         switch (position) {
-            case 0:
-                return TYPE_HEADER;
             default:
                 return TYPE_CELL;
         }
@@ -65,6 +67,10 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                         }
                     }
                 });
+
+                ImageView iv = (ImageView) view.findViewById(R.id.img_background);
+                iv.setImageDrawable(context.getDrawable(R.drawable.rich_nightclub_toronto));
+
                 return new RecyclerView.ViewHolder(view) {
 
                 };
@@ -72,8 +78,7 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
         return null;
     }
-
-
+    
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {

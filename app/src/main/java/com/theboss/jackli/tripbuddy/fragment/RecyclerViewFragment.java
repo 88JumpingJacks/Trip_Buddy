@@ -54,7 +54,7 @@ public class RecyclerViewFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new RecyclerViewMaterialAdapter(new TestRecyclerViewAdapter(mContentItems));
+        mAdapter = new RecyclerViewMaterialAdapter(new TestRecyclerViewAdapter(mContentItems, getActivity()));
         mRecyclerView.setAdapter(mAdapter);
 
         {
